@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,16 +21,56 @@ namespace WPFCRUD
     /// </summary>
     public partial class MainWindow : Window
     {
+        Person Person;
+        PersonContext db;
+        ObservableCollection<Person> persons;
+
         public MainWindow()
         {
             InitializeComponent();
+            db = new PersonContext();
+            persons = new ObservableCollection<Person>(db.Persons);
+
+            spInput.DataContext = persons;
+            lstboxPerson.ItemsSource = persons;
         }
 
-        private void Button_Click_Open_AddWindow(object sender, RoutedEventArgs e)
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private async void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Person p= (Person)lstboxPerson.SelectedItem;
+            db.Remove(p);
+            await db.SaveChangesAsync();
+            RefreshPerson();
+
+        }
+
+        private void RefreshPerson()
+        {
+            persons.Clear();
+            foreach (var item in db.Persons) persons.Add(item);
+        }
+
+        private async void btnClose_Click_1(object sender, RoutedEventArgs e)
+        {
+            RefreshPerson();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Windowadd windowadd = new Windowadd();
             windowadd.Owner = this;
-            windowadd.ShowDialog();
+            windowadd.Show();
+            RefreshPerson();
         }
     }
 }

@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCRUD"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Click="Button_Click_Open_AddWindow" Content="Add"></Button>
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        Foreground="Black"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
+Background="Transparent"
+        >
+    <Border Background="Bisque" CornerRadius="0,0,200,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Munkatársak nyílvántartása" FontSize="30" TextAlignment="Center" Grid.ColumnSpan="3" Padding="0,20,0,20">
+
+            </TextBlock>
+            <TextBlock Text="X" FontSize="15" HorizontalAlignment="Right" TextAlignment="Center" Grid.ColumnSpan="3" Padding="0,5,5,0" PreviewMouseDown="TextBlock_PreviewMouseDown">
+
+            </TextBlock>
+            <ListBox x:Name="lstboxPerson" FontSize="20" Margin="10,0,0,10" Grid.Row="1" ItemsSource="{Binding}" Background="Transparent" Padding="10,0,0,0" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True"></ListBox>
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="Név" FontSize="16" HorizontalAlignment="Right" Margin="10"></TextBlock>
+                <TextBlock Text="Kor" FontSize="16" HorizontalAlignment="Right" Margin="10"></TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="spInput" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                <TextBox FontSize="16" Margin="0,0,30,0" Padding="0,5" Text="{Binding Name}"></TextBox>
+                <TextBox FontSize="16" Margin="0,10,30,0" Padding="0,5" Text="{Binding Age}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Content="Új" Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
+                <Button Click="btnClose_Click_1" Content="Frissítés" Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
+                <Button x:Name="btnClose" Click="btnClose_Click" Content="Törlés"  Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
+                
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

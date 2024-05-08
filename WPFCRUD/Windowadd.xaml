@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Munkatársak felvétele" FontSize="30" TextAlignment="Center" Grid.ColumnSpan="2" Padding="0,20,0,20">
+            <TextBlock Text="Munkatársak hozzáadása" FontSize="30" TextAlignment="Center" Grid.ColumnSpan="2" Padding="0,20,0,20">
                
             </TextBlock>
             <TextBlock Text="X" FontSize="15" HorizontalAlignment="Right" TextAlignment="Center" Grid.ColumnSpan="2" Padding="0,5,5,0" PreviewMouseDown="TextBlock_PreviewMouseDown">
@@ -41,11 +41,10 @@
                 <TextBox FontSize="16" Margin="0,0,30,0" Padding="0,5" Text="{Binding Name}"></TextBox>
                 <TextBox FontSize="16" Margin="0,10,30,0" Padding="0,5" Text="{Binding Age}"></TextBox>
             </StackPanel>
-            <Button Content="Nézet" Background="Azure" Click="btnClose_Click_1" Margin="10,10,0,30" HorizontalAlignment="Left" FontSize="15" Padding="0,0" Width="80"></Button>
-            
+                        
             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Button Content="Mentés" Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
-                <Button x:Name="btnClose" Click="btnClose_Click" Content="Bezárás"  Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
+                <Button Click="btnClose_Click_1" Content="Mentés" Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
+                <Button x:Name="btnClosed" Click="btnClosed_Click" Content="Bezárás"  Background="Azure"  Margin="10,0,0,5" HorizontalAlignment="Left" FontSize="15" Padding="0,5" Width="80"></Button>
             </StackPanel>
         </Grid>
     </Border>
